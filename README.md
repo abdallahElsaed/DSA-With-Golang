@@ -1,1 +1,5 @@
-### Learning data structure and algorithm by GoLan
+### Learning data structure and algorithm with GoLan
+
+## Data Structure 
+- Linked list
+- Double Linked list
