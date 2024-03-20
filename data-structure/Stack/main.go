@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -11,24 +12,16 @@ type Stack struct {
 
 func createStack(capacity int) *Stack {
 	return &Stack{
-		data: make([]int, capacity),
+		data: make([]int , 0 , capacity),
 		top:  -1,
 	}
 }
 
-/*
-*
-- check is the stack is full
-  - if the stack data array length == top
-
-- If not,
-  - increase top 1
-  - append the element in data array at top position
+/***
+		- increase top 1
+		- append the element in data array at top position
 */
 func (s *Stack) push(value int) {
-	if (len(s.data) - 1) == s.top {
-		fmt.Println("your stack is full")
-	}
 	s.top++
 	s.data= append(s.data, value)
 }
@@ -38,10 +31,7 @@ func (s *Stack) push(value int) {
 check if the top == -1
 */
 func (s *Stack) isEmpty() bool {
-	if s.top == -1 {
-		return true
-	}
-	return false
+	return s.top == -1
 }
 
 /*
@@ -52,28 +42,41 @@ func (s *Stack) isEmpty() bool {
   - remove the top element
   - decrease the top by 1
 */
-func (s *Stack) pop() int {
+func (s *Stack) pop() (int, error){
 	if s.isEmpty() {
-		fmt.Println("your stack is empty")
+		// fmt.Println("You can not pop, your stack is empty")
+		return 0 , errors.New("You can not pop")
+		// errors.New("your stack is empty")
 	}
 	element := s.data[s.top]
 	s.data = s.data[:s.top]
 	s.top--
-	return element
+	return element , nil
 }
 func (s *Stack) getTop() {
-	fmt.Println(s.top)
+	fmt.Printf("Top element is %d" ,s.data[s.top])
 }
 
 func (s *Stack) print() {
-	for i, value := range s.data {
-		fmt.Printf(" %d : %d ", i, value)
+	for _, value := range s.data {
+		fmt.Printf(" %d\n", value)
 	}
 }
 func main() {
 	stack := createStack(3)
 	stack.push(1)
+	stack.push(2)
+	stack.push(3)
+	stack.push(4)
 
-	stack.print()
+	stack.pop()
+	stack.pop()
+	// stack.pop()
+	// stack.pop()
+
+	stack.getTop()
+
+
+	// stack.print()
 
 }
