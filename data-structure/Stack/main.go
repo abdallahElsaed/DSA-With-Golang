@@ -63,20 +63,23 @@ func (s *Stack) print() {
 	}
 }
 func main() {
-	stack := createStack(3)
-	stack.push(1)
-	stack.push(2)
-	stack.push(3)
-	stack.push(4)
+	// stack := createStack(3)
+	// stack.push(1)
+	// stack.push(2)
+	// stack.push(3)
+	// stack.push(4)
 
-	stack.pop()
-	stack.pop()
 	// stack.pop()
 	// stack.pop()
-
-	stack.getTop()
-
-
+	// stack.pop()
+	// stack.pop()
+	// stack.getTop()
 	// stack.print()
+
+	llStack := LinkedList{} 
+	llStack.pushLL(1)
+	llStack.pushLL(2)
+	llStack.pushLL(3)
+	llStack.printLL()
 
 }
